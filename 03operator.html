@@ -15,7 +15,7 @@
 
     <script>
       10; //리터럴 표현식
-      sum; //식별자 표현식
+      /*sum;*/ //식별자 표현식
       10 + 20; //연산자 표현식
       Date(); //함수 표현식
     </script>
@@ -82,13 +82,13 @@
     </p>
 
     <script>
-    x = 1;
-    x = x + 1;
-    document.write(`x + 1 = `, x, `<br>`);
+      x = 1;
+      x = x + 1;
+      document.write(`x + 1 = `, x, `<br>`);
 
-    x = 1;
-    x += 1;   //syntactic sugar(좀 더 편하게 코딩할 수 있게 도와주는 문법)
-    document.write(`(x += 1) = `, x, `<br>`);
+      x = 1;
+      x += 1; //syntactic sugar(좀 더 편하게 코딩할 수 있게 도와주는 문법)
+      document.write(`(x += 1) = `, x, `<br>`);
     </script>
 
     <h2>비교연산자</h2>
@@ -98,35 +98,34 @@
     <script>
       x = 10;
       y = 5;
-      document.write(`x = 10, y = 5`,`<br>`)
-      document.write(`10 > 5 `,x > y, `<br><br>`)
+      document.write(`x = 10, y = 5`, `<br>`);
+      document.write(`10 > 5 `, x > y, `<br><br>`);
       y = 10;
-      document.write(`x = 10, y = 10`,`<br>`)
-      document.write(`10 = 5 `,x == y, `<br>`)
-      document.write(`10 == 5 `,x === y, `<br><br>`)
+      document.write(`x = 10, y = 10`, `<br>`);
+      document.write(`10 = 5 `, x == y, `<br>`);
+      document.write(`10 == 5 `, x === y, `<br><br>`);
       y = 10n;
-      document.write(`x = 10, y = 10n`,`<br>`)
-      document.write(`10 == 5 `,x == y, `<br>`)
-      document.write(`10 === 5 `,x === y, `<br><br>`)
-                //자바스크립트에서 == 연산자로 비교 시,
-                //변수의 자료형을 일치시키는 암묵적 형변환 발생
-                //비교연산자는 경우에 따라 수많은 부작용이 발생됨
-      y = '10'; //'==='(자료형까지 비교함) 사용을 추천함
-      document.write(`x = 10, y = '10'`,`<br>`)
-      document.write(`10 == 5 `,x == y, `<br>`)
-      document.write(`10 === 5 `,x === y, `<br><br>`)
+      document.write(`x = 10, y = 10n`, `<br>`);
+      document.write(`10 == 5 `, x == y, `<br>`);
+      document.write(`10 === 5 `, x === y, `<br><br>`);
+      //자바스크립트에서 == 연산자로 비교 시,
+      //변수의 자료형을 일치시키는 암묵적 형변환 발생
+      //비교연산자는 경우에 따라 수많은 부작용이 발생됨
+      y = "10"; //'==='(자료형까지 비교함) 사용을 추천함
+      document.write(`x = 10, y = '10'`, `<br>`);
+      document.write(`10 == 5 `, x == y, `<br>`);
+      document.write(`10 === 5 `, x === y, `<br><br>`);
 
-      document.write(`100까지의 무작위 숫자 비교`, `<br>`)
-      x = Math.round(Math.random()*100);
-      y = Math.round(Math.random()*100);
-      if(x>y){
-        document.write(x, ` > `, y, `<br>`)}
-        else if(x===y){
-          document.write(x, ` = `, y, `<br>`)
-        }
-        else{
-          document.write(x, ` < `, y, `<br>`)
-        }
+      document.write(`100까지의 무작위 숫자 비교`, `<br>`);
+      x = Math.round(Math.random() * 100);
+      y = Math.round(Math.random() * 100);
+      if (x > y) {
+        document.write(x, ` > `, y, `<br>`);
+      } else if (x === y) {
+        document.write(x, ` = `, y, `<br>`);
+      } else {
+        document.write(x, ` < `, y, `<br>`);
+      }
     </script>
 
     <h2>삼항연산자</h2>
@@ -135,81 +134,111 @@
 
     <script>
       //평균점수가 60 이상이면 '합격', 아니면 '불합격'이라 출력
-      let jumsu = Math.round(Math.random()*100);
-      document.write(`60점이 넘어야 합격입니다`,`<br>`);
-      (jumsu>60) ? document.write(jumsu,`점! 합격!`,`<br>`) : document.write(jumsu,`점. 불합격..`,`<br>`);
+      let jumsu = Math.round(Math.random() * 100);
+      document.write(`60점이 넘어야 합격입니다`, `<br>`);
+      jumsu > 60
+        ? document.write(jumsu, `점! 합격!`, `<br>`)
+        : document.write(jumsu, `점. 불합격..`, `<br>`);
     </script>
 
     <h2>논리 연산자</h2>
-    <p>boolean 표현식에 대한 논리합 OR(||) 또는 논리곱 AND(&&) 또는 부정 NOT(!) 연산을 수행하는 기호.</p>
-  <script>
-    document.write(`True OR False : `, true || false, `<br>`);
-    document.write(`True AND False : `, true && false, `<br>`);
-    document.write(`True(1) AND False(0) : `, 1 && 0, `<br><br>`);
+    <p>
+      boolean 표현식에 대한 논리합 OR(||) 또는 논리곱 AND(&&) 또는 부정 NOT(!)
+      연산을 수행하는 기호.
+    </p>
+    <script>
+      document.write(`True OR False : `, true || false, `<br>`);
+      document.write(`True AND False : `, true && false, `<br>`);
+      document.write(`True(1) AND False(0) : `, 1 && 0, `<br><br>`);
 
-    // FF - F, FT - T, TF - T, TT - T
-    // val = val1 || val2 || val3 의 경우
-    // 연산자 OR는 첫번째 truthy를 출력함
-    document.write(`True(1) OR False(0) OR True(1) : `, 1 || 0 || 1, `<br>`);
-    document.write(`Null OR True(1) : `, null || 1, `<br>`);
-    document.write(`Undefined OR True(1) : `, undefined || 1, `<br>`);
-    document.write(`Undefined OR Null : `, undefined || null, `<br>`);
-    document.write(`Undefined OR True(1) OR Null : `, undefined || 1 || null, `<br><br>`);
+      // FF - F, FT - T, TF - T, TT - T
+      // val = val1 || val2 || val3 의 경우
+      // 연산자 OR는 첫번째 truthy를 출력함
+      document.write(`True(1) OR False(0) OR True(1) : `, 1 || 0 || 1, `<br>`);
+      document.write(`Null OR True(1) : `, null || 1, `<br>`);
+      document.write(`Undefined OR True(1) : `, undefined || 1, `<br>`);
+      document.write(`Undefined OR Null : `, undefined || null, `<br>`);
+      document.write(
+        `Undefined OR True(1) OR Null : `,
+        undefined || 1 || null,
+        `<br><br>`
+      );
 
-    // FF - F, FT - F, TF - F, TT - T
-    // val = val1 && val2 && val3 의 경우
-    // 연산자 AND는 첫번째 falsy를 출력함
-    document.write(`True(1) AND True(1) AND False(0) : `, 1 && 1 && 0, `<br>`);
-    document.write(`Null AND True(1) : `, null && 1, `<br>`);
-    document.write(`Undefined AND True(1) : `, undefined && 1, `<br>`);
-    document.write(`Undefined AND Null : `, undefined && null, `<br>`);
-    document.write(`Null AND True(1) AND Undefined : `, null && 1 && undefined, `<br><br>`);
-    //short circuit evaluate은 3개 이상을 논리연산할 때 적용됨
+      // FF - F, FT - F, TF - F, TT - T
+      // val = val1 && val2 && val3 의 경우
+      // 연산자 AND는 첫번째 falsy를 출력함
+      document.write(
+        `True(1) AND True(1) AND False(0) : `,
+        1 && 1 && 0,
+        `<br>`
+      );
+      document.write(`Null AND True(1) : `, null && 1, `<br>`);
+      document.write(`Undefined AND True(1) : `, undefined && 1, `<br>`);
+      document.write(`Undefined AND Null : `, undefined && null, `<br>`);
+      document.write(
+        `Null AND True(1) AND Undefined : `,
+        null && 1 && undefined,
+        `<br><br>`
+      );
+      //short circuit evaluate은 3개 이상을 논리연산할 때 적용됨
 
-    document.write(`Null AND True(1) AND Undefined : `, null & 1 & undefined, `<br>`);
-    document.write(`Null OR True(1) OR Undefined : `, null | 1 | undefined, `<br>`);
-  </script>
+      document.write(
+        `Null AND True(1) AND Undefined : `,
+        null & 1 & undefined,
+        `<br>`
+      );
+      document.write(
+        `Null OR True(1) OR Undefined : `,
+        null | 1 | undefined,
+        `<br>`
+      );
+    </script>
 
-  <h2>변수의 자료형 알아보기</h2>
-  <p>typeof 연산자를 이용하면 변수나 값의 자료형을 출력함</p>
-  <script>
-    document.write(`숫자 10의 자료형 : `, typeof(10), `<br>`);
-    document.write(`문자 abc의 자료형 : `, typeof('abc'), `<br>`);
-    document.write(`숫자 10n의 자료형 : `, typeof(10n), `<br>`);
-    document.write(`True의 자료형 : `, typeof(true), `<br>`);
-    document.write(`Null의 자료형 : `, typeof(null), `<br>`);
-    document.write(`Undefined의 자료형 : `, typeof(undefined), `<br>`);
-  </script>
+    <h2>변수의 자료형 알아보기</h2>
+    <p>typeof 연산자를 이용하면 변수나 값의 자료형을 출력함</p>
+    <script>
+      document.write(`숫자 10의 자료형 : `, typeof 10, `<br>`);
+      document.write(`문자 abc의 자료형 : `, typeof "abc", `<br>`);
+      document.write(`숫자 10n의 자료형 : `, typeof 10n, `<br>`);
+      document.write(`True의 자료형 : `, typeof true, `<br>`);
+      document.write(`Null의 자료형 : `, typeof null, `<br>`);
+      document.write(`Undefined의 자료형 : `, typeof undefined, `<br>`);
+    </script>
 
-  <h2>자료형 변환</h2>
-  <p>함수와 연산자에 전달되는 값은 표현식에 적합하게 적절한 자료형으로 변환됨.(묵시적 형변환)</p>
-  <p>하지만, 상황에 따라선 의도를 갖고 원하는 자료형으로 직접 변환해야 하는 경우도 있음.(명시적 형변환)</p>
-  <p>어떤 값을 숫자형으로 변환하고 싶다면 Number() 사용</p>
-  <p>어떤 값을 문자형으로 변환하고 싶다면 String() 사용</p>
-  <p>어떤 값을 불리언형으로 변환하고 싶다면 Boolean() 사용</p>
-  <script>
-    //나이계산 v1: 현재년도 - 생년년도
-/*    let birthyear = prompt(`태어난 년도를 입력해주세요.`);
+    <h2>자료형 변환</h2>
+    <p>
+      함수와 연산자에 전달되는 값은 표현식에 적합하게 적절한 자료형으로
+      변환됨.(묵시적 형변환)
+    </p>
+    <p>
+      하지만, 상황에 따라선 의도를 갖고 원하는 자료형으로 직접 변환해야 하는
+      경우도 있음.(명시적 형변환)
+    </p>
+    <p>어떤 값을 숫자형으로 변환하고 싶다면 Number() 사용</p>
+    <p>어떤 값을 문자형으로 변환하고 싶다면 String() 사용</p>
+    <p>어떤 값을 불리언형으로 변환하고 싶다면 Boolean() 사용</p>
+    <script>
+      //나이계산 v1: 현재년도 - 생년년도
+      /*    let birthyear = prompt(`태어난 년도를 입력해주세요.`);
     let thisyear = new Date();
     let age = thisyear.getFullYear()-birthyear;
     document.write(`당신의 탄생년도는 ${String(birthyear)}년입니다.`, `<br>`);
     document.write(`그리고 올해는 ${String(thisyear.getFullYear())}년입니다.`,`<br><br>`);
     document.write(`그러므로 당신의 나이는 ${String(age)}세 입니다.`,`<br><br>`);*/
 
-    a = 10;
-    b = 0;
-    document.write(`a = 10, b = 0`, `<br>`);
-    document.write(`a + String(b) = `,a+String(b), `<br>`);
+      a = 10;
+      b = 0;
+      document.write(`a = 10, b = 0`, `<br>`);
+      document.write(`a + String(b) = `, a + String(b), `<br>`);
 
-
-/*    //ex)성적처리 프로그램 v2
+      /*  //ex)성적처리 프로그램 v2
     //이름, 국어, 영어, 수학을 입력받아 총점, 평균, 학점을 계산한 뒤 결과 출력
     //학점은 20점 단위로 수,우,미,양,가 중 하나가 판정되어 출력되어야 한다.
     let Sname = prompt('성명을 입력하세요.');
     let Skor = Number(prompt('국어점수를 입력하세요.'));
     let Seng = Number(prompt('영어점수를 입력하세요.'));
     let Smath = Number(prompt('수학점수를 입력하세요.'));
-    //prompt로 입력받는 모든 값은 문자로 취급됨
+    //prompt로 입력받는 모든 값은 문자로 취급되서 Number로 숫자로 변환해줌
     let Ssum = Skor + Seng + Smath;
     let Savr = Ssum / 3;
     let Sgrd = Savr>=90?`수`:
@@ -222,6 +251,42 @@
     document.write(`총점 : ${Ssum}<br>`);
     document.write(`평균 : ${Savr}<br>`);
     document.write(`학점 : ${Sgrd}<br>`);*/
-  </script>
+
+      /*//ex)성적처리 프로그램 v2b
+      //이름, 국어, 영어, 수학을 입력받아 총점, 평균, 학점을 계산한 뒤 결과 출력
+      //학점은 20점 단위로 수,우,미,양,가 중 하나가 판정되어 출력되어야 한다.
+      let Sname = prompt("성명을 입력하세요.");
+      let Skor = prompt("국어점수를 입력하세요.");
+      let Seng = prompt("영어점수를 입력하세요.");
+      let Smath = prompt("수학점수를 입력하세요.");
+
+      //숫자가 아닌 값을 숫자형으로 묵시적 변환(단항연산자)
+      let Ssum = +Skor + +Seng + +Smath;
+      let Savr = Ssum / 3;
+      let Sgrd =
+        Savr >= 90
+          ? `수`
+          : Savr >= 80
+          ? `우`
+          : Savr >= 70
+          ? `미`
+          : Savr >= 60
+          ? `양`
+          : `가`;
+
+      document.write(`<h1>성적처리 v2b</h1>`);
+      document.write(`이름 : ${Sname}<br>`);
+      document.write(`총점 : ${Ssum}<br>`);
+      document.write(`평균 : ${Savr}<br>`);
+      document.write(`학점 : ${Sgrd}<br>`);*/
+
+      //단항연산자의 묵시적 변환의 예시(숫자형이 아닌 것도 변환 가능)
+      console.log("+`` : ", +``);
+      console.log(`+Null : `, +null);
+      console.log(`+False : `, +false);
+      console.log(`+True : `, +true);
+      console.log(`+Undefined : `, +undefined);
+      console.log(`+[] : `, +[]);
+    </script>
   </body>
 </html>
