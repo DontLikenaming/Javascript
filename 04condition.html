@@ -13,7 +13,8 @@
     <h2>코드블록</h2>
     <p>0개 이상의 명령문을 중괄호({})로 묶은 것.</p>
     <p>
-      블록은 단독으로 사용할 수 있으나, 일반적으로 제어문이나 함수/객체 선언할 때 주로 사용함.
+      블록은 단독으로 사용할 수 있으나, 일반적으로 제어문이나 함수/객체 선언할
+      때 주로 사용함.
     </p>
 
     <h2>if문</h2>
@@ -31,77 +32,92 @@
       if (num % 2 === 0) {
         document.write(`<p>`, `${num}은 짝수입니다.`, `</p>`);
       }
-      if (num % 2 !== 0){
+      if (num % 2 !== 0) {
         document.write(`<p>`, `${num}은 홀수입니다.`, `</p>`);
       }
 
       //오전, 오후 구분하여 출력
-      time = '09:53:12';
+      time = "09:53:12";
       hour = time[0] + time[1];
       document.write(`<p>`, `현재 시각은 ${hour}시 입니다.`, `</p>`);
       if (hour < 12) {
         document.write(`<p>`, `오전입니다.`, `</p>`);
       }
-      if (hour >= 12){
+      if (hour >= 12) {
         document.write(`<p>`, `오후입니다.`, `</p>`);
       }
     </script>
 
     <h2>if ~else문</h2>
-    <p>조건을 만족하지 않으면 if 아래의 코드블록을 실행하고,<br> 만족하지 않을 경우 else 아래의 코드블록을 실행함.</p>
+    <p>
+      조건을 만족하지 않으면 if 아래의 코드블록을 실행하고,<br />
+      만족하지 않을 경우 else 아래의 코드블록을 실행함.
+    </p>
     <p>if(조건식){ 참일 때 실행할 명령어(들) }</p>
     <p>else{ 거짓일 때 실행할 명령어(들) }</p>
     <script>
-        //평균점수가 60점 이상이면 '시험 합격!!'을 출력
-        //평균점수가 60점 미만이면 '시험 불합격!!'을 출력
-        avg = 58.5;
-        if (avg >= 60) {
-            document.write(`<p>`, `${avg}점, 시험 합격!!`, `</p>`);
-        } else {
-            document.write(`<p>`, `${avg}점, 시험 불합격!!`, `</p>`);
-        }
+      //평균점수가 60점 이상이면 '시험 합격!!'을 출력
+      //평균점수가 60점 미만이면 '시험 불합격!!'을 출력
+      avg = 58.5;
+      if (avg >= 60) {
+        document.write(`<p>`, `${avg}점, 시험 합격!!`, `</p>`);
+      } else {
+        document.write(`<p>`, `${avg}점, 시험 불합격!!`, `</p>`);
+      }
 
-        //짝수, 홀수 여부 출력
-        num = 7;
-        if (num % 2 === 0) {
-            document.write(`<p>`, `${num}은 짝수입니다.`, `</p>`);
-        } else {
-            document.write(`<p>`, `${num}은 홀수입니다.`, `</p>`);
-        }
+      //짝수, 홀수 여부 출력
+      num = 7;
+      if (num % 2 === 0) {
+        document.write(`<p>`, `${num}은 짝수입니다.`, `</p>`);
+      } else {
+        document.write(`<p>`, `${num}은 홀수입니다.`, `</p>`);
+      }
 
-        //오전, 오후 구분하여 출력
-        time = '15:47:40';
-        hour = time[0] + time[1];
-        document.write(`<p>`, `현재 시각은 ${hour}시 입니다.`, `</p>`);
-        if (hour < 12) {
-            document.write(`<p>`, `오전입니다.`, `</p>`);
-        } else {
-            document.write(`<p>`, `오후입니다.`, `</p>`);
-        }
+      //오전, 오후 구분하여 출력
+      time = "15:47:40";
+      hour = time[0] + time[1];
+      document.write(`<p>`, `현재 시각은 ${hour}시 입니다.`, `</p>`);
+      if (hour < 12) {
+        document.write(`<p>`, `오전입니다.`, `</p>`);
+      } else {
+        document.write(`<p>`, `오후입니다.`, `</p>`);
+      }
 
-        //올해가 윤년 여부를 출력
-        thisyear = new Date();
-        document.write(`<p>`, `올해는 ${thisyear.getFullYear()}년 입니다.`, `</p>`);
-        document.write(`<p>`, `올해의 2월은 ${new Date(thisyear.getFullYear(), 2, 0).getDate()}일까지 입니다.`, `</p>`);
-        if(new Date(thisyear.getFullYear(), 2, 0).getDate() === 29){
-            document.write(`<p>`, `그러므로 올해는 윤년 입니다.`, `</p>`);
-        }else{
-            document.write(`<p>`, `그러므로 올해는 윤년이 아닙니다.`, `</p>`);
-        }
+      //올해가 윤년 여부를 출력
+      thisyear = new Date();
+      document.write(
+        `<p>`,
+        `올해는 ${thisyear.getFullYear()}년 입니다.`,
+        `</p>`
+      );
+      document.write(
+        `<p>`,
+        `올해의 2월은 ${new Date(
+          thisyear.getFullYear(),
+          2,
+          0
+        ).getDate()}일까지 입니다.`,
+        `</p>`
+      );
+      if (new Date(thisyear.getFullYear(), 2, 0).getDate() === 29) {
+        document.write(`<p>`, `그러므로 올해는 윤년 입니다.`, `</p>`);
+      } else {
+        document.write(`<p>`, `그러므로 올해는 윤년이 아닙니다.`, `</p>`);
+      }
 
-        //특정 년도가 윤년인지 여부를 출력
-        //조건1 : 4로 나눠 떨어지면서 100으로는 나누어 떨어지지 않으면 윤년
-        //조건2 : 조건1에 더해 400으로 나누어 떨어지면 윤년
-        year = 2020;
-        document.write(`<p>`, `목표 년도는 ${year}년 입니다.`, `</p>`);
-        if((year % 4 === 0 && year % 100 !== 0)||(year % 400 === 0)){
-            document.write(`<p>`, `해당 년도는 윤년 입니다.`, `</p>`);
-        }else{
-            document.write(`<p>`, `해당 년도는 평년 입니다.`, `</p>`);
-        }
+      //특정 년도가 윤년인지 여부를 출력
+      //조건1 : 4로 나눠 떨어지면서 100으로는 나누어 떨어지지 않으면 윤년
+      //조건2 : 조건1에 더해 400으로 나누어 떨어지면 윤년
+      year = 2020;
+      document.write(`<p>`, `목표 년도는 ${year}년 입니다.`, `</p>`);
+      if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+        document.write(`<p>`, `해당 년도는 윤년 입니다.`, `</p>`);
+      } else {
+        document.write(`<p>`, `해당 년도는 평년 입니다.`, `</p>`);
+      }
 
-        // 아이디와 비밀번호 이용해서 로그인 기능 구현하기
-/*        userid = "admin";
+      // 아이디와 비밀번호 이용해서 로그인 기능 구현하기
+      /*        userid = "admin";
         passwd = 123456;
         uid = prompt("아이디를 입력하세요.");
         pwd = Number(prompt("비밀번호를 입력하세요."));
@@ -111,7 +127,7 @@
           document.write(`<p>`, `<h3>회원 인증에 실패했습니다.</h3>`, `</p>`);
           document.write(`<p>`, `웹 문서에 접근할 수 없습니다. 관리자에게 문의하시기 바랍니다.`, `</p>`);
         }*/
-/*        userid = "admin";
+      /*        userid = "admin";
         passwd = 123456;
         uid = prompt("아이디를 입력하세요.");
         pwd = Number(prompt("비밀번호를 입력하세요."));
@@ -131,24 +147,28 @@
       //특정 년도가 윤년인지 여부를 출력 v2
       year = 2000;
       document.write(`<p>`, `목표 년도는 ${year}년 입니다.`, `</p>`);
-      result = '<p>해당 년도는 평년입니다.</p>';
-        if((year % 4 === 0) || ((year % 4 === 0) && (year % 100 === 0) && (year % 400 === 0))){
-          if((year % 100 === 0) && (year % 400 !== 0)){
-            document.write(result);
-          } else{
-            document.write(`<p>`, `해당 년도는 윤년 입니다.`, `</p>`);
-          }
+      result = "<p>해당 년도는 평년입니다.</p>";
+      if (
+        year % 4 === 0 ||
+        (year % 4 === 0 && year % 100 === 0 && year % 400 === 0)
+      ) {
+        if (year % 100 === 0 && year % 400 !== 0) {
+          document.write(result);
+        } else {
+          document.write(`<p>`, `해당 년도는 윤년 입니다.`, `</p>`);
         }
-        else {
+      } else {
         document.write(result);
       }
-
     </script>
 
     <h2>다중 조건문</h2>
-    <p>다중 조건에 대한 만족여부에 따라 코드블록을 실행하려면 if ~else 다음에 if ~else문을 더 추가함.</p>
+    <p>
+      다중 조건에 대한 만족여부에 따라 코드블록을 실행하려면 if ~else 다음에 if
+      ~else문을 더 추가함.
+    </p>
     <script>
-      //평균 점수에 따라 수우미양가 부여
+      /*      //평균 점수에 따라 수우미양가 부여
       avg = 75;
       result = '가';
       if(avg >= 90){
@@ -195,37 +215,221 @@
           }
           document.write(`<p>`, `${age}세의 버스 요금은 ${pay}원 입니다.`, `</p>`);
         }
-      }
+      }*/
     </script>
     <h2>조건식에서 거짓으로 취급되는 값들</h2>
     <p>
-      false, 0, undefined, null, NaN, 빈 문자열 등은 조건식에서 참이 아닌 거짓으로 취급함.
+      false, 0, undefined, null, NaN, 빈 문자열 등은 조건식에서 참이 아닌
+      거짓으로 취급함.
     </p>
     <script>
-      result = '거짓입니다.<br>'
-/*      if(undefined){*/
-/*      if(0){*/
-/*      if(false){*/
-/*      if(null){*/
-/*      if(NaN){*/
-      if(''){
-        result='참입니다.</br>';
+      result = "거짓입니다.<br>";
+      /*      if(undefined){*/
+      if (0) {
+        /*      if(false){*/
+        /*      if(null){*/
+        /*      if(NaN){*/
+        /*      if(''){*/
+        result = "참입니다.</br>";
       }
       document.write(result);
     </script>
 
-<!--    <p>다중 조건 if문을 가독성 있게 작성한 조건문.</p>
+    <h2>switch문</h2>
+    <p>다중 조건 if문을 가독성 있게 작성한 조건문.</p>
     <p>
-      switch의 표현식을 평가하여 그 값의 일치여부에 따라 case문 아래의 코드 블럭을 실행하는 구조.
+      switch의 표현식을 평가하여 그 값의 일치여부에 따라 case문 아래의 코드
+      블럭을 실행하는 구조.
     </p>
     <p>
       표현식의 평가값과 일치하는 case가 없는 경우 default문의 코드블럭을 실행함.
     </p>
     <p>
-      단, 표현식의 평가값과 일치하는 case문이 실행되더라도 break문이 없으면,<br>
+      단, 표현식의 평가값과 일치하는 case문이 실행되더라도 break문이 없으면,<br />
       switch문이 중단되지 않고 나머지 case문을 실행하게 됨. - full through
     </p>
+    <script>
+      //짝수, 홀수 여부 출력 v2
+      num = -1;
+      result = "";
+      switch (num % 2 === 0) {
+        case true:
+          result = "짝수입니다.</p>";
+          break;
+        case false:
+          result = "홀수입니다.</p>";
+          break;
+      }
+      document.write(`입력된 값은 ${num}입니다. `, result);
 
+      //오전, 오후 구분하여 출력 v2
+      time = "09:53:12";
+      hour = time[0] + time[1];
+      result = "";
+      switch (hour <= 12) {
+        case true:
+          result = "오전입니다.";
+          break;
+        case false:
+          result = "오후입니다.";
+          break;
+      }
+      document.write(`<p>`, `현재 시각은 ${hour}시 입니다. `, result, `</p>`);
+    </script>
+    <script>
+      //월을 입력하면 영어로 변환해서 출력
+      month = 1;
+      result = "";
+      switch (month) {
+        case 1:
+          result = "January";
+          break;
+        case 2:
+          result = "February";
+          break;
+        case 3:
+          result = "March";
+          break;
+        case 4:
+          result = "April";
+          break;
+        case 5:
+          result = "May";
+          break;
+        case 6:
+          result = "June";
+          break;
+        case 7:
+          result = "July";
+          break;
+        case 8:
+          result = "August";
+          break;
+        case 9:
+          result = "September";
+          break;
+        case 10:
+          result = "October";
+          break;
+        case 11:
+          result = "November";
+          break;
+        case 12:
+          result = "December";
+          break;
+        default:
+          result = "잘못 입력하셨습니다.";
+          break;
+      }
+      document.write(`<p>`, result, `</p>`);
+
+      //월, 윤년여부(Y/N)를 입력하면 해당 월의 마지막 날을 출력
+      //1, 3, 5, 7, 8, 10, 12 - 31일
+      //4, 6, 9, 11 - 30일
+      //2 - 윤년 여부에 따라 28(N)일 or 29(Y)일
+      month = 2;
+      islunar = "n";
+      result = "";
+      switch (month) {
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+          result = "31일";
+          break;
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+          result = "30일";
+          break;
+        case 2:
+          if (islunar.toUpperCase()==="Y") {
+            result = "29일";
+          }else{
+            if (islunar.toUpperCase() === "N") {
+              result = "28일";
+            }else{
+              result = "<p>잘못 입력하셨습니다.</p>";
+            }
+          }
+          break;
+        default:
+          result = "<p>잘못 입력하셨습니다.</p>";
+          break;
+      }
+
+      document.write(`<p>`, result, `</p>`);
+
+      //평균 점수에 따라 수우미양가 결과 출력(switch문 사용)
+      avg = 85.1;
+      result = "";
+/*      switch(avg <= 0 || avg > 100) {
+        case true :
+          result = "잘못 입력하셨습니다.";
+          break;
+        case false:
+        switch
+          (avg >= 90)
+        {
+        case true:
+          result = "수";
+          break;
+        case false:
+          switch (avg >= 80) {
+            case true:
+              result = "우";
+              break;
+            case false:
+              switch (avg >= 70) {
+                case true:
+                  result = "미";
+                  break;
+                case false:
+                  switch (avg >= 60) {
+                    case true:
+                      result = "양";
+                      break;
+                    case false:
+                      break;
+                  }
+              }
+          }
+        }
+      }*/
+      switch(avg < 0 || avg > 100) {
+        case true :
+          result = '잘못 입력하셨습니다.';
+          break;
+        case false :
+          switch (parseInt(avg / 10)) {
+            case 10:
+            case 9:
+              result = '수';
+              break;
+            case 8:
+              result = '우';
+              break;
+            case 7:
+              result = '미';
+              break;
+            case 6:
+              result = '양';
+              break;
+            default:
+              result = '가';
+              break;
+          }
+          break;
+        default:
+      }
+      document.write(`<p>`, avg, ` `, result, `</p>`);
+    </script>
+
+    <h3>여담</h3>
     <p>
       javascript 한정으로 switch의 case문에 비교 연산자를 이용한 범위를 검사하는 코드를 작성할 수도 있음.
       (https://stackoverflow.com/questions/5619832/switch-on-ranges-of-integers-in-javascript)
@@ -238,6 +442,6 @@
     </p>
     <p>
       하지만, switch문은 평가식의 결과값을 판단하고, 해당하는 case절로 바로 찾아가기 때문에 if문보다 효율이 좋음.
-    </p>-->
+    </p>
   </body>
 </html>
