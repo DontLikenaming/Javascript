@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>자바스크립트 함수</title>
+</head>
+<body>
+<h1>자바스크립트 함수</h1>
+<h2>함수 외부 참조</h2>
+<p>함수 정의를 독립적인 소스파일에 작성하고 사용하려는 곳에서 이 것을 호출해서 사용할 수 있음.</p>
+<p>script 태그의 src 속성을 이용해서 소스파일을 지정해야 함.</p>
+<script src="js/08func.js"></script>
+<script>
+    year = parseInt(2023);
+    result = computeLeapYear(year);
+    document.write(`${year}년은 ${result}<br>`);
+
+    floor = parseInt(10);
+    mark = `*`;
+    showStarPyramid(floor, mark);
+    document.write(`<br>`);
+
+    hour = parseInt(10);
+    minute = parseInt(32);
+    second = parseInt(40);
+    time = showAMPM(hour, minute, second);
+    document.write(`입력받은 시각은 ${hour}시 ${minute}분 ${second}초 입니다.<br>${time}<br>`);
+    document.write(`<br>`);
+
+    kor = parseInt(98);
+    eng = parseInt(99);
+    mat = parseInt(99);
+    grd = computeSungJuk(kor, eng, mat);
+    switch (grd===null) {
+        case true:
+            document.write(`error!<br>`);
+            break;
+        case false:
+            document.write(`당신의 등급은 ${grd}입니다.<br>`);
+            break;
+    }
+    document.write(`<br>`);
+</script>
+
+<h2>익명함수</h2>
+<p>자바스크립트의 함수는 1급시민이므로 값으로 취급할 수 있음.</p>
+<p>따라서, 함수를 익명으로 정의한 후 변수에 대입하는 식으로 함수를 선언할 수도 있음.</p>
+<script>
+    let sayHello4 = function (msg){
+        return `Hello, ${msg}!<br>`;
+    }
+    result = sayHello4(`Anon func`);
+    document.write(result);
+</script>
+
+<h2>화살표 함수</h2>
+<p>ES6에서 추가된 기능으로 함수 선언을 간단하게 작성 가능함.</p>
+<p>function이라는 키워드 대신 => 를 이용해서 함수를 선언할 수 있음.</p>
+<script>
+    let sayHello5 = (msg) => {
+        return `Hello, ${msg}!<br>`;
+    }
+    result = sayHello5(`Arrow func`);
+    document.write(result);
+</script>
+<script>
+    let sayHello6 = (msg) =>
+        document.write(`Hello, ${msg}!<br>`);
+
+    sayHello6(`paren omitted Arrow func`);
+</script>
+<script>
+    let sayHello7 = (msg) =>
+        `Hello, ${msg}!<br>`;
+
+    result = sayHello7(`paren, return omitted Arrow func`);
+    document.write(result);
+</script>
+<script>
+//부가세 계산 : computeVAT
+//금액을 입력하면 부가세를 계산해서 출력
+price = 10000;
+
+//선언형
+function computeVAT(price){
+    return price * 0.1;
+}
+result = computeVAT(price);
+document.write(`부가가치세 : ${result}원<br>`);
+
+//익명
+let computeVAT1 = function(price){
+    return price * 0.1;
+}
+result = computeVAT1(price);
+document.write(`부가가치세 : ${result}원<br>`);
+
+//화살표 v1
+let computeVAT2 = (price) => {
+    return price * 0.1;
+}
+result = computeVAT2(price);
+document.write(`부가가치세 : ${result}원<br>`);
+
+//화살표 v2
+let computeVAT3 = (price) =>
+    document.write(`부가가치세 : ${price*0.1}원<br>`);
+
+computeVAT3(price);
+
+//화살표 v3
+let computeVAT4 = (price) =>
+    `부가가치세 : ${price*0.1}원<br>`
+
+document.write(computeVAT4(price));
+</script>
+</body>
+</html>
