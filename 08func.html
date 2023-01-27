@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>자바스크립트 함수</title>
+</head>
+<body>
+<h1>자바스크립트 함수</h1>
+<h2>개요</h2>
+<p>특정 작업(코드블록)을 여러 번 반복해야 하는 경우, 해당 작업을 재사용 가능한 구조로 만들 때 사용</p>
+<p>즉, 어떤 작업을 반복해서 수행하기 위해 필요한 코드들의 집합을 의미하고,<br>
+  이 것들을 재사용하기 위해 모듈형태로 작성한 것을 의미함.</p>
+<h3>사용법</h3>
+<p>function 함수명(매개변수들,...){</p>
+<p>&nbsp;코드들</p>
+<p>}</p>
+<script>
+// 인삿말 v1
+function SayHallo(){
+  document.write(`Hello, World!<br>`)
+}
+SayHallo();
+</script>
+<script>
+// 인삿말 v2
+function SayHallo2(msg){
+  document.write(`Hello, ${msg}!<br>`)
+}
+SayHallo2("Java");
+SayHallo2("HTML");
+SayHallo2("CSS");
+</script>
+<script>
+// 인삿말 v3
+function SayHallo3(msg){
+  return `Hello, ${msg}!<br>`;
+}
+document.write(`👍`, SayHallo3("JavaScript"));
+document.write(`💖`, SayHallo3("Node.js"));
+document.write(`💕`, SayHallo3("react"));
+</script>
+<!--실습-->
+<script>
+  //년도를 입력하면 윤년 여부를 계산해서 출력
+  //윤년 여부를 계산하는 함수 : computeLeapYear
+/*  function computeLeapYear(year) {
+    result = `평년입니다.`;
+    if (year % 4 === 0 || (year % 4 === 0 && year % 100 === 0 && year % 400 === 0)) {
+      if ((year % 100 === 0 && year % 400 !== 0)!==true) {
+        result = `윤년 입니다.`;
+      }
+    }
+      return result;
+  }
+  year = parseInt(prompt(`년도를 입력하세요.`))
+  result = computeLeapYear(year);
+  document.write(`${year}년은 ${result}<br>`);*/
+</script>
+<script>
+  //층수를 입력받아 피라미드 함수 : showStarPyramid
+/*  function showStarPyramid(floor, mark) {
+    result = ``;
+    for (i = 0; i < floor+1; ++i) {
+      for (l = 0; l < i; ++l) {
+          result += mark;
+      }
+      result += '<br>';
+    }
+      document.write(`${result}<br>`);
+  }
+  floor = parseInt(prompt("원하는 층수를 입력하세요."));
+  mark = prompt("원하는 문자 or 특수문자를 입력하세요.");
+  showStarPyramid(floor, mark);*/
+</script>
+<script>
+  //시, 분, 초를 입력받아 오전, 오후를 구분하여 출력하는 함수 : showAMPM
+/*  function showAMPM(hour, minute, second) {
+    result = `잘못 입력하셨습니다.`;
+    if(((hour<0||hour>=24)||(minute<0||minute>=60)||(second<0||second>=60))!==true){
+      switch (hour < 12) {
+        case true:
+          result = `오전입니다.`;
+          break;
+        case false:
+          result = `오후입니다.`;
+          break;
+      }
+    }
+      return result;
+  }
+  hour = parseInt(prompt(`시를 입력하세요.`))
+  minute = parseInt(prompt(`분을 입력하세요.`))
+  second = parseInt(prompt(`초를 입력하세요.`))
+  time = showAMPM(hour, minute, second);
+  document.write(`입력받은 시각은 ${hour}시 ${minute}분 ${second}초 입니다.<br>${time}<br>`);*/
+</script>
+<script>
+  //국어, 영어, 수학을 입력하면 학점을 출력하는 함수 : computeSungJuk
+/*function computeSungJuk(kor, eng, mat){
+      tot = (kor + eng + mat);
+      avg = (tot / 3);
+      grd = '가';
+        if((kor<0||kor>100)||(eng<0||eng>100)||(mat<0||mat>100)){
+            grd = null;
+            return grd;
+        }
+          switch (parseInt(avg / 10)) {
+            case 10:
+            case 9:
+              grd=`수`;
+              break;
+            case 8:
+              grd=`우`;
+              break;
+            case 7:
+              grd=`미`;
+              break;
+            case 6:
+              grd=`양`;
+              break;
+            default:
+              break;
+          }
+      document.write(`총점은 ${tot}입니다.<br> 평균 점수는 ${avg}입니다.<br>`);
+      return grd;
+    }
+    kor = parseInt(prompt(`국어점수를 입력하세요.`))
+    eng = parseInt(prompt(`영어점수를 입력하세요.`))
+    mat = parseInt(prompt(`수학점수를 입력하세요.`))
+    grd = computeSungJuk(kor, eng, mat);
+    switch (grd===null) {
+      case true: document.write(`error!<br>`); break;
+      case false: document.write(`당신의 등급은 ${grd}입니다.<br>`); break;
+    }*/
+
+</script>
+</body>
+</html>
