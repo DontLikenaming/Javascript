@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>자바스크립트 객체</title>
+</head>
+<body>
+<h1>자바스크립트 객체</h1>
+<h2>개요</h2>
+<p>자바스크립트는 기본 자료형을 제외한 나머지는 모두 객체임.</p>
+<p>자바스크립트는 기본적으로 key와 value로 구성된 속성들의 집합임.</p>
+<p>자바스크립트의 함수는 1급 시민이므로 값으로 취급 가능함.</p>
+<p>따라서, 객체란 `데이터를 의미하는 속성`과 `데이터를 참조하고 조각하는 동작을 의미하는 메서드(함수)`로 구성됨.</p>
+
+<h2>속성(property)</h2>
+<p>키와 값으로 이루어진 객체의 주된 구성요소.</p>
+<script>
+//{}기호를 이용해서 객체 생성
+  person = {
+    name : `혜교`,
+    email : `abc123@xyz987.com`,
+    phone : `123-4567-8912`
+};
+//Object 생성자를 이용해서 객체 생성 - 축약된 방법(권장됨)
+  person2 = new Object();
+    person2.name = `혜교`;
+    person2.email = `abc123@xyz987.com`;
+    person2.phone = `123-4567-8912`;
+</script>
+
+<h2>객체 속성 접근하기</h2>
+<p>객체 속성에 접근하거나 다루기 위해서는 '객체명.키 이름' 형식을 사용해야 함.</p>
+<p>또는 '객체명[키 이름(문자일 경우 ``을 빼먹으면 안됨)]'으로도 사용 가능</p>
+<script>
+  document.write(person[`name`],`&nbsp;`,person[`email`],`&nbsp;`,person[`phone`],`<br>`);
+  document.write(person2.name, `&nbsp;`, person2.email, `&nbsp;`, person2.phone,`<br>`);
+</script>
+
+<h2>객체 내용 순회</h2>
+<p>for-in문을 사용하면 개체에 포함된 모든 속성에 접근할 수 있음.</p>
+<script>
+  for(prop in person){
+  document.write(prop, '-', person[prop], `<br>`);
+  }
+</script>
+<h2>다양한 형태의 객체</h2>
+<p>객체의 요소로 객체 또는 함수를 포함시킬 수 있음.</p>
+<script>
+  let person3 = new Object();
+    person3.name = '지현';
+    person3.age = 35;
+    person3.skill = ['HTML5', 'CSS3', 'JS'];
+    person3.sayHello = function () {
+      document.write(`Hello, World!!`, `<br>`);
+    };
+    person3.showinfo1 = function () {
+      return `${person3.name} / ${person3.age} <br>`;
+    };
+    //객체의 함수에서 this를 사용하는 경우
+    //객체 그 자체를 가리키는 키워드로 인식함
+    person3.showinfo2 = function () {
+      return `${this.name} / ${this.age} <br>`;
+    };
+
+
+  document.write(person3.name, '/', person3.skill,`<br>`);
+  person3.sayHello();
+  document.write(person3.showinfo1());
+  document.write(person3.showinfo2());
+</script>
+<h2>Set 객체</h2>
+<p>배열과 유사한 자료구조를 가짐.</p>
+<p>그러나, 배열은 저장순서를 기억하고 중복값을 허용하지만 Set은 중복값을 허용하지 않음.</p>
+<script>
+  let nums1 = new Array();
+  nums1.push(1);
+  nums1.push(3);
+  nums1.push(5);
+  nums1.push(7);
+  nums1.push(9);
+  nums1.push(9);
+  document.write(nums1, `/`, nums1.length, `<br>`);
+
+  let nums2 = new Set();
+  nums2.add(1); //set에 데이터 추가시 add 사용
+  nums2.add(3);
+  nums2.add(5);
+  nums2.add(7);
+  nums2.add(9);
+  nums2.add(9);
+  document.write(nums2, `/`, nums2.size, `<br>`);
+
+  //set은 출력할 수 있는 방법이 한정되어 있음(for-in으로는 출력 불가)
+  for(val of nums2){
+    document.write(val, `<br>`);
+  }
+</script>
+<h2>Map</h2>
+<p>키와 값으로 데이터를 저장하는 Object와 유사한 자료구조</p>
+<p>하지만, Object는 속성과 함수를 포함할 수 있지만 Map은 속성만 포함할 수 있음.</p>
+<script>
+ person4 =  new Map();
+   person4.set(`name`, `수지`); //map에서 값을 저장하려면 set을 이용해야 함
+   person4.set(`age`, 30);
+   person4.set(`email`, `xyz987@abc123.co.kr`);
+
+ document.write(person4,'<br>');
+//대괄호로 내용 출력
+ document.write(person4[name],'<br>');
+// . 기호로 내용 출력
+ document.write(person4.name,'<br>');
+//for-in으로 내용 출력
+ for(key in person4) {
+   document.write(key, person4.get('name'), `<br>`);
+ }
+//for-of으로 내용 출력
+ for(val of person4) {
+   document.write(val, `<br>`);
+ }
+//객체명.get(키)로 내용 출력
+ document.write(person4.get('name'), `<br>`);
+//forEach로 내용 출력
+//맵객체명.forEach(콜백함수정의)
+ person4.forEach(function (value, key){document.write(key, `/`, value, `<br>`)});
+ person4.forEach((value, key) => {document.write(key, `/`, value, `<br>`)});
+</script>
+<h2>난수 생성 v1</h2>
+<p>특정 범위에 속하는 정수 중 임의의 숫자를 뽑으려면,</p>
+<p>1. Math 객체의 random 함수를 사용 : 0 ~ 1 사이의 무작위 실수가 출력됨.</p>
+<p>&emsp;ㄴ최소값을 지정하려면 (Math.random()*(max - min +1))+min을 한다.</p>
+<script>
+  document.write((Math.random()*45+1), `<br>`);
+</script>
+
+<script>
+  //1~45 사이의 정수 중 중복하지 않은 6개 숫자 출력
+  document.write( `<br>`, `1~45 사이의 정수 중 중복하지 않은 6개 숫자 출력`, `<br>`);
+  let lotto = new Set();
+  while(true) {
+    lotto.add(parseInt(Math.random() * 45 + 1));
+      if(lotto.size===6){
+        break;
+      }
+  }
+  for(val of lotto){
+    document.write(val, `<br>`);
+  }
+</script>
+<script>
+  //성적 프로그램 v4
+  //이름, 국어, 영어, 수학을 입력받아
+  //총점, 평균, 학점을 계산한 뒤 결과 출력
+
+  //단, 학생이름과 성적들은 SungJuk이라는 객체에 저장
+  //SungJuk 객체의 computeSungJuk이라는 함수를 이용해서
+  //총점, 평균, 학점을 처리하고
+  //SungJuk 객체의 showSungJuk이라는 함수를 이용해서
+  //성적 처리 결과를 출력
+/*  SungJuk  = new Object();
+    SungJuk.input = function (){
+      SungJuk.name = prompt("이름을 입력하세요.");
+      SungJuk.kor = parseInt(prompt("국어점수를 입력하세요."));
+      SungJuk.eng = parseInt(prompt("영어점수를 입력하세요."));
+      SungJuk.mat = parseInt(prompt("수학점수를 입력하세요."));
+    }
+    SungJuk.computeSungJuk = function () {
+      tot = (SungJuk.kor + SungJuk.eng + SungJuk.mat);
+      avg = (tot / 3);
+      grd = '가';
+      switch (parseInt(avg / 10)) {
+        case 10:
+        case 9:
+          grd = `수`;
+          break;
+        case 8:
+          grd = `우`;
+          break;
+        case 7:
+          grd = `미`;
+          break;
+        case 6:
+          grd = `양`;
+          break;
+        default:
+          break;
+      }
+      SungJukary = [tot, avg, grd];
+    }
+    SungJuk.showSungJuk = function () {
+      document.write(`성명 : ${SungJuk.name} 총점 : ${SungJukary[0]}<br>평균 : ${SungJukary[1]} 학점 : ${SungJukary[2]}<br>`);
+    }
+
+  SungJuk.input();
+  SungJuk.computeSungJuk();
+  SungJuk.showSungJuk();*/
+</script>
+</body>
+</html>
