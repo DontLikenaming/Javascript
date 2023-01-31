@@ -136,15 +136,13 @@
   //1~45 사이의 정수 중 중복하지 않은 6개 숫자 출력
   document.write( `<br>`, `1~45 사이의 정수 중 중복하지 않은 6개 숫자 출력`, `<br>`);
   let lotto = new Set();
-  while(true) {
+  while(lotto.size<6) {
     lotto.add(parseInt(Math.random() * 45 + 1));
-      if(lotto.size===6){
-        break;
-      }
   }
   for(val of lotto){
-    document.write(val, `<br>`);
+    document.write(val, ` `);
   }
+  document.write(`<br>`);
 </script>
 <script>
   //성적 프로그램 v4
@@ -156,38 +154,55 @@
   //총점, 평균, 학점을 처리하고
   //SungJuk 객체의 showSungJuk이라는 함수를 이용해서
   //성적 처리 결과를 출력
-/*  SungJuk  = new Object();
+/*  let SungJuk  = new Object();
+    name = '';
+    kor = 0;
+    eng = 0;
+    mat = 0;
+    tot = 0;
+    avg = 0;
+    grd = '';
+
     SungJuk.input = function (){
-      SungJuk.name = prompt("이름을 입력하세요.");
-      SungJuk.kor = parseInt(prompt("국어점수를 입력하세요."));
-      SungJuk.eng = parseInt(prompt("영어점수를 입력하세요."));
-      SungJuk.mat = parseInt(prompt("수학점수를 입력하세요."));
+      this.name = prompt("이름을 입력하세요.");
+          while (true) {
+              this.kor = parseInt(prompt("국어점수를 입력하세요."));
+              this.eng = parseInt(prompt("영어점수를 입력하세요."));
+              this.mat = parseInt(prompt("수학점수를 입력하세요."));
+
+                  if(((0<=this.kor)&&(this.kor<=100)&&(0<=this.eng)&&(this.eng<=100)&&(0<=this.mat)&&(this.mat<=100))) {
+                     break;
+                  }
+              alert(`잘못 입력하셨습니다.`);
+          }
     }
+
     SungJuk.computeSungJuk = function () {
       tot = (SungJuk.kor + SungJuk.eng + SungJuk.mat);
       avg = (tot / 3);
       grd = '가';
-      switch (parseInt(avg / 10)) {
-        case 10:
-        case 9:
-          grd = `수`;
-          break;
-        case 8:
-          grd = `우`;
-          break;
-        case 7:
-          grd = `미`;
-          break;
-        case 6:
-          grd = `양`;
-          break;
-        default:
-          break;
-      }
+          switch (parseInt(avg / 10)) {
+            case 10:
+            case 9:
+              grd = `수`;
+              break;
+            case 8:
+              grd = `우`;
+              break;
+            case 7:
+              grd = `미`;
+              break;
+            case 6:
+              grd = `양`;
+              break;
+            default:
+              break;
+          }
       SungJukary = [tot, avg, grd];
     }
+
     SungJuk.showSungJuk = function () {
-      document.write(`성명 : ${SungJuk.name} 총점 : ${SungJukary[0]}<br>평균 : ${SungJukary[1]} 학점 : ${SungJukary[2]}<br>`);
+      document.write(`성명 : ${this.name} 총점 : ${SungJukary[0]}<br>평균 : ${SungJukary[1]} 학점 : ${SungJukary[2]}<br>`);
     }
 
   SungJuk.input();
