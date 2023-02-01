@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>자바스크립트 예외처리</title>
+</head>
+<body>
+<h1>자바스크립트 예외처리</h1>
+<h2>개요</h2>
+<p>프로그램의 실행을 중단시키는 요인을 에러 또는 예외라고 함.</p>
+<p>에러(error) : 개발자가 조치할 수 없는 시스템 상의 오류.<br>
+&emsp;ㄴ 네트워크 오류, 전원 차단으로 인한 오류 등</p>
+<p>예외(exception) : 개발자가 조치할 수 있는 시스템 상의 오류.<br>
+&emsp;ㄴ 문법 오류, 논리 오류, 실행 오류 등</p>
+<p>자바스크립트의 에외는 try - catch 문을 통해 관리 가능.</p>
+<p> try { </p>
+<p>   예외가 발생할만한 코드들 </p>
+<p> } catch(객체) { </p>
+<p>   예외 처리 코드 </p>
+<p> } </p>
+<script>
+    document.write(`-프로그램 시작-`,`<br>`);
+    document.write(`100/10 = ${100/10}<br>`);
+    document.write(`-프로그램 끝-`,`<br>`);
+</script>
+<script>
+/*    document.write(`-프로그램 시작-`,`<br>`);
+    document.write(`${100/num}<br>`);  //오류가 발생함으로 인해
+                                       //실행이 중단되어 이 이상 출력되지 않음
+    document.write(`-프로그램 끝-`,`<br>`);*/
+</script>
+<script>
+    //예외처리 v1
+    document.write(`-프로그램 시작-`,`<br>`);
+    try{
+        document.write(`${100/num}<br>`);
+    }catch(e){
+        document.write(`오류 발생!! - num 변수를 선언하십시오.<br>`);
+    }
+    document.write(`-프로그램 끝-`,`<br>`);
+</script>
+<script>
+    //예외처리 v2
+    try{
+        document.write(`-프로그램 시작-`,`<br>`);
+        document.write(`${100/num}<br>`)        //오류로 인해 이 이상 진행되지 않고
+                                                //catch 문으로 넘어감
+        document.write(`-프로그램 끝-`,`<br>`);
+    }catch(e){
+        document.write(`오류 발생!! - num 변수를 선언하십시오.<br>`);
+    }
+</script>
+<h2>오류 정보 확인</h2>
+<p>Error 객체의 name, message, stack 속성으로 확인 가능함.</p>
+<script>
+    try{
+        document.write(`${100/num}<br>`);
+    }catch(e){
+        document.write(e.name,`<br>`);      //오류 종류
+        document.write(e.message,`<br>`);   //오류 내용
+        document.write(e.stack,`<br>`);     //오류 발생 추적
+    }
+</script>
+<h2>유형별 예외처리</h2>
+<p>오류 유형별로 메세지 처리를 상이하게 하고 싶다면 instanceof 연산자를 사용하면 됨.</p>
+<p>ReferenceError : 변수 선언과 관련된 오류 발생 시 출력됨.</p>
+<p>RangeError : 범위와 관련된 오류 발생 시 출력됨.</p>
+<p>SyntaxError : 문법과 관련된 오류 발생 시 출력됨.</p>
+<p>TypeError : 변수나 객체의 자료형과 관련된 오류 발생 시 출력됨.</p>
+<h2>인위적으로 오류발생시키기</h2>
+<p>특정 코드에 의해 발생되는 오류 외에도
+    로직이 정상적으로 수행되는 특정조건을
+    만족하지 못했을때 의도적으로 오류를 발생시켜
+    catch 블럭에 의해 예외처리를 해야할 경우가 있음</p>
+
+<p>이때 'throw 오류객체명' 구문으로
+    오류를 발생시킬수 있음</p>
+<script>
+    let checkAge = (age) =>{
+        if((age<0)||(age>122)){
+            throw new RangeError;
+        }
+    }
+    try {
+        checkAge(-300);
+    }catch (e){
+        if(e instanceof RangeError)
+            document.write("나이를 올바르게 입력하세요");
+    }
+</script>
+</body>
+</html>
