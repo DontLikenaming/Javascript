@@ -209,5 +209,61 @@
   SungJuk.computeSungJuk();
   SungJuk.showSungJuk();*/
 </script>
+<script>
+let SungJuk2  = {
+    this:name = '',
+    this:kor = 0,
+    this:eng = 0,
+    this:mat = 0,
+    this:tot = 0,
+    this:avg = 0,
+    this:grd = ''
+}
+    let SJinput = () => {
+        SungJuk2.name = prompt("이름을 입력하세요.");
+        while (true) {
+            SungJuk2.kor = parseInt(prompt("국어점수를 입력하세요."));
+            SungJuk2.eng = parseInt(prompt("영어점수를 입력하세요."));
+            SungJuk2.mat = parseInt(prompt("수학점수를 입력하세요."));
+
+            if (((0 <= SungJuk2.kor) && (SungJuk2.kor <= 100) && (0 <= SungJuk2.eng) && (SungJuk2.eng <= 100) && (0 <= SungJuk2.mat) && (SungJuk2.mat <= 100))) {
+                break;
+            }
+            alert(`잘못 입력하셨습니다.`);
+        }
+    }
+
+    let computeSungJuk = (SungJuk2) => {
+        SungJuk2.tot = (SungJuk2.kor + SungJuk2.eng + SungJuk2.mat);
+        SungJuk2.avg = (SungJuk2.tot / 3);
+        SungJuk2.grd = '가';
+          switch (parseInt(SungJuk2.avg / 10)) {
+            case 10:
+            case 9:
+                SungJuk2.grd = `수`;
+              break;
+            case 8:
+                SungJuk2.grd = `우`;
+              break;
+            case 7:
+                SungJuk2.grd = `미`;
+              break;
+            case 6:
+                SungJuk2.grd = `양`;
+              break;
+            default:
+              break;
+          }
+    }
+
+    let showSungJuk = (SungJuk2) => {
+      document.write(`성명 : ${SungJuk2.name} 총점 : ${SungJuk2.tot}<br>평균 : ${SungJuk2.avg} 학점 : ${SungJuk2.grd}<br>`);
+    }
+
+  SJinput();
+  computeSungJuk(SungJuk2);
+  showSungJuk(SungJuk2);
+
+</script>
 </body>
 </html>
