@@ -62,5 +62,255 @@
     three.style.color = `white`;
     three_one.style.background = `black`;
 </script>
+<p>여러 요소들을 태그이름으로 찾으려면
+    document.getElementsByTagName를 사용,<br>
+    반환값은 HTMLCollection객체(유사배열)에 저장</p>
+
+<p>여러 요소들을 클래스이름으로 찾으려면
+    document.getElementsByClassName를 사용,<br>
+    반환값은 HTMLCollection객체(유사배열)에 저장</p>
+
+<p>여러 요소들을 클래스 선택자로 찾으려면
+    document.querySelectorAll을 사용,<br>
+    반환값은 NodeList객체(유사리스트)에 저장</p>
+<div>
+    <p class="two">시간은 금이라구 친구</p>
+    <p class="two">별의 영역이 광활하다는 건 놀라운 것이 아니다.
+        인류가 그것을 측정해낸 게 놀랍다</p>
+</div>
+<script>
+    //문서 제목 바꾸기
+    let title = document.getElementsByTagName(`title`);
+    console.log(title[0].innerText);
+    title[0].innerText = `Hello, DOM!!`;
+
+    //클래스 이름이 two인 요소들의 스타일 변경
+    let p = document.getElementsByClassName('two');
+    console.log(p);
+    p[0].style.color = `blue`;
+    p[1].style.backgroundColor = `yellow`;
+</script>
+<div>
+    <p class="fifth">시간은 금이라구 친구</p>
+    <p class="fifth">별의 영역이 광활하다는 건 놀라운 것이 아니다.
+        인류가 그것을 측정해낸 게 놀랍다</p>
+    <p class="sixth">어디서도 보지 못했던,
+        아무도 경험하지 못했던 완전히 새로운 게임</p>
+</div>
+<script>
+    //같은 클래스에 속한 것이 여러 개 있어도 하나만 잡힘
+    let fifth = document.querySelector(`.fifth`);   //Id로 선택할 땐 #
+    console.log(fifth);                             //클래스 이름으로 선택할 땐 .
+    fifth.style.textDecoration = 'underline';
+
+    let fifths = document.querySelectorAll(`.fifth`);
+    console.log(fifths);
+    //fifths.style.fontStyle = 'italic';     //전체를 대상으로 한번에 바꿀 순 없음
+    fifths[0].style.fontStyle = 'italic';
+    fifths[1].style.fontStyle = 'italic';
+</script>
+<h2>속성 다루기</h2>
+<p>특정 요소의 속성을 다루기 위해서는 setAttribute를 사용.</p>
+<div><img id = "img1" ></div>
+<div>
+    <button type="button" onclick="showimg()">img1</button>
+    <button type="button" onclick="hideimg()">close</button>
+
+</div>
+<script>
+    let showimg = () =>{
+        let img = document.querySelector(`#img1`);
+        img.setAttribute(`src`, `img/smile.png`);   //한번에 속성 하나만 부여 가능
+        img.setAttribute(`width`, `50%`);
+        img.setAttribute(`height`, `50%`);
+    }
+    let hideimg = () =>{
+        let img = document.querySelector(`#img1`);
+        img.setAttribute(`src`, ``);
+        img.setAttribute(`width`, `0%`);
+        img.setAttribute(`height`, `0%`);
+    }
+</script>
+<h2>새로운 요소 추가</h2>
+<p>태그 이름을 인자로 전달해서 문서상에 새로운 요소를 생성하려면 creatElement를 사용.</p>
+<p>지정한 요소를 특정 요소의 자식 요소로 추가하려면 appendChild를 사용.</p>
+<p>텍스트 노드를 추가하려면 createTextNode를 사용</p>
+<div id="img2"></div>
+<div><button type="button" onclick="showimg2()">img2</button></div>
+<script>
+    let showimg2 = () =>{
+        let div_img2 = document.querySelector(`#img2`);
+        let img = document.createElement('img');
+
+        if(div_img2.firstChild===null){
+            div_img2.appendChild(img);
+            img.setAttribute(`src`, `img/smile.png`);
+            img.setAttribute(`width`, `50%`);
+            img.setAttribute(`height`, `50%`);
+        }
+    }
+</script>
+<h2>성적 결과 리스트</h2>
+<div id="sj"></div>
+<div><button type="button" onclick="sjtable()">성적 결과 테이블</button></div>
+<script>
+    //table, th, tr, td 태그 등을 이용해서
+    //이름, 국어, 영어, 수학 성적을 목록 형태로 출력
+    let sj = document.querySelector(`#sj`);
+    let table = document.createElement(`table`);
+    table.setAttribute(`border`,`1`);
+    table.setAttribute(`width`,`500`);
+    table.setAttribute(`cellspacing`,`0`);
+    table.setAttribute(`cellpadding`,`0`);
+
+    let thdata = ['이름',`국어`,`영어`,`수학`];
+    let sjdata1 = ['지현', 98, 98, 98];
+
+    let tr0 = document.createElement('tr');
+    for(let val of thdata) {
+        let th = document.createElement('th');
+        let txt = document.createTextNode(val);
+        th.appendChild(txt);
+        tr0.appendChild(th);
+    }
+    table.appendChild(tr0);
+
+    let tr1 = document.createElement('tr');
+    for(let val of sjdata1) {
+        let td = document.createElement('td');
+        let txt = document.createTextNode(val);
+        td.appendChild(txt);
+        td.setAttribute(`align`,`center`);
+        tr1.appendChild(td);
+    }
+    table.appendChild(tr1);
+
+    let sjtable = () => {
+        sj.appendChild(table);
+    }
+</script>
+<h2>시/구/동 검색</h2>
+<div>
+    <select id="sido" onchange="getGugun()"></select>
+    <select id="gugun" onchange="getDong()"></select>
+    <select id="dong" onchange="getAddr()"></select>
+</div>
+<script>
+    let sido = document.querySelector(`#sido`);
+    let gugun = document.querySelector(`#gugun`);
+    let dong = document.querySelector(`#dong`);
+    let sido_data = [`서울특별시`,
+                     `경기도`,
+                     `인천광역시`,
+                     `부산광역시`,
+                     `제주특별자치도`]
+    let gugun_data = [
+        ['강남구','서초구','종로구','광진구','송파구'],
+        ['과천시', '광명시', '부천시', '성남분당구']
+        [`강화군`],
+        [`진구`],
+        [`서귀포시`]
+        ];
+    let dong_data = [
+        [['논현동','대치동','삼성동'], ['반포동','방배동','양재동'],['광희동','명동','충무로'],['가락동','석촌동']],
+        [['과천동'],['광명동'],['대장동']],
+        [['연수동']],
+        [['개금동','가야동']],
+        [['강정동']]
+        ];
+    let clear = () =>{
+        while(gugun.firstChild) {
+            gugun.removeChild(gugun.firstChild);
+        }
+    }
+    let addTitle = (parent, title) => {
+        option = document.createElement('option');
+        txt = document.createTextNode(title);
+        option.appendChild(txt);
+        parent.appendChild(option);
+    }
+    let getSido = () =>{
+        addTitle(sido, `- 광역시 -`);
+
+        option = document.createElement('option');
+        txt = document.createTextNode(`시/군/구`);
+        option.appendChild(txt);
+        gugun.appendChild(option);
+
+        option = document.createElement('option');
+        txt = document.createTextNode(`읍/면/동`);
+        option.appendChild(txt);
+        dong.appendChild(option);
+
+        for(let val of sido_data) {
+            let option = document.createElement('option');
+            let txt = document.createTextNode(val);
+            option.appendChild(txt);
+            sido.appendChild(option);
+        }
+    }
+    let getGugun = () =>{
+        clear();
+        switch (sido.selectedIndex){
+            case 1:
+                gugun_val = gugun_data[sido.selectedIndex-1]+``;
+
+                gugun_val1 = gugun_val.split(",");
+                for(let val of gugun_val1) {
+                    let option = document.createElement('option');
+                    let txt = document.createTextNode(val);
+                    option.appendChild(txt);
+                    gugun.appendChild(option);
+                }
+                break;
+            case 2:
+                gugun_val = gugun_data[sido.selectedIndex-1]+``;
+                gugun_val1 = gugun_val.split(",");
+                for(let val of gugun_val1) {
+                    let option = document.createElement('option');
+                    let txt = document.createTextNode(val);
+                    option.appendChild(txt);
+                    gugun.appendChild(option);
+                }
+                break;
+            case 3:
+                gugun_val = gugun_data[sido.selectedIndex-1]+``;
+                gugun_val1 = gugun_val.split(",");
+                for(let val of gugun_val1) {
+                    let option = document.createElement('option');
+                    let txt = document.createTextNode(val);
+                    option.appendChild(txt);
+                    gugun.appendChild(option);
+                }
+                break;
+            case 4:
+                gugun_val = gugun_data[sido.selectedIndex-1]+``;
+                gugun_val1 = gugun_val.split(",");
+                for(let val of gugun_val1) {
+                    let option = document.createElement('option');
+                    let txt = document.createTextNode(val);
+                    option.appendChild(txt);
+                    gugun.appendChild(option);
+                }
+                break;
+            case 5:
+                gugun_val = gugun_data[sido.selectedIndex-1]+``;
+                gugun_val1 = gugun_val.split(",");
+                for(let val of gugun_val1) {
+                    let option = document.createElement('option');
+                    let txt = document.createTextNode(val);
+                    option.appendChild(txt);
+                    gugun.appendChild(option);
+                }
+                break;
+        }
+    }
+    let getDong = () =>{
+
+    }
+    let getAddr = () =>{}
+
+    getSido();
+</script>
 </body>
 </html>
