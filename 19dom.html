@@ -194,6 +194,7 @@
     <select id="sido" onchange="getGugun()"></select>
     <select id="gugun" onchange="getDong()"></select>
     <select id="dong" onchange="getAddr()"></select>
+    <p id="myaddr"></p>
 </div>
 <script>
     let sido = document.querySelector(`#sido`);
@@ -206,7 +207,7 @@
                      `제주특별자치도`]
     let gugun_data = [
         ['강남구','서초구','종로구','광진구','송파구'],
-        ['과천시', '광명시', '부천시', '성남분당구']
+        ['과천시', '광명시', '부천시', '성남분당구'],
         [`강화군`],
         [`진구`],
         [`서귀포시`]
@@ -218,99 +219,134 @@
         [['개금동','가야동']],
         [['강정동']]
         ];
-    let clear = () =>{
-        while(gugun.firstChild) {
-            gugun.removeChild(gugun.firstChild);
+    let clear = (self) =>{
+        while(self.firstChild) {
+            self.removeChild(self.firstChild);
+        }
+        switch(self) {
+            case gugun: addTitle(gugun, `시/군/구`); break;
+            case dong: addTitle(dong, `읍/면/동`); break;
         }
     }
+
     let addTitle = (parent, title) => {
         option = document.createElement('option');
         txt = document.createTextNode(title);
         option.appendChild(txt);
         parent.appendChild(option);
     }
+    let addcontents = (parent, array, num) =>{
+        if(num>0){
+            for(let val of array) {
+                option = document.createElement('option');
+                txt = document.createTextNode(val);
+                option.appendChild(txt);
+                parent.appendChild(option);
+            }
+        }
+
+    }
+    let split = (parentIndex, array) =>{
+        Arr = array[parentIndex]+``;
+        Arr1 = Arr.split(",");
+
+        return Arr1;
+    }
+    let divide = (parentIndex, array) =>{
+        Arr = array[parentIndex];
+
+        return Arr;
+    }
     let getSido = () =>{
         addTitle(sido, `- 광역시 -`);
+        addTitle(gugun, `시/군/구`);
+        addTitle(dong, `읍/면/동`);
 
-        option = document.createElement('option');
-        txt = document.createTextNode(`시/군/구`);
-        option.appendChild(txt);
-        gugun.appendChild(option);
+        addcontents(sido, sido_data,1);
 
-        option = document.createElement('option');
-        txt = document.createTextNode(`읍/면/동`);
-        option.appendChild(txt);
-        dong.appendChild(option);
-
-        for(let val of sido_data) {
-            let option = document.createElement('option');
-            let txt = document.createTextNode(val);
-            option.appendChild(txt);
-            sido.appendChild(option);
-        }
     }
     let getGugun = () =>{
-        clear();
+        clear(gugun);
         switch (sido.selectedIndex){
             case 1:
-                gugun_val = gugun_data[sido.selectedIndex-1]+``;
-
-                gugun_val1 = gugun_val.split(",");
-                for(let val of gugun_val1) {
-                    let option = document.createElement('option');
-                    let txt = document.createTextNode(val);
-                    option.appendChild(txt);
-                    gugun.appendChild(option);
-                }
+                gugun_val = split(sido.selectedIndex-1,gugun_data);
+                addcontents(gugun,gugun_val,sido.selectedIndex);
                 break;
             case 2:
-                gugun_val = gugun_data[sido.selectedIndex-1]+``;
-                gugun_val1 = gugun_val.split(",");
-                for(let val of gugun_val1) {
-                    let option = document.createElement('option');
-                    let txt = document.createTextNode(val);
-                    option.appendChild(txt);
-                    gugun.appendChild(option);
-                }
+                gugun_val = split(sido.selectedIndex-1,gugun_data);
+                addcontents(gugun,gugun_val,sido.selectedIndex);
                 break;
             case 3:
-                gugun_val = gugun_data[sido.selectedIndex-1]+``;
-                gugun_val1 = gugun_val.split(",");
-                for(let val of gugun_val1) {
-                    let option = document.createElement('option');
-                    let txt = document.createTextNode(val);
-                    option.appendChild(txt);
-                    gugun.appendChild(option);
-                }
+                gugun_val = split(sido.selectedIndex-1,gugun_data);
+                addcontents(gugun,gugun_val,sido.selectedIndex);
                 break;
             case 4:
-                gugun_val = gugun_data[sido.selectedIndex-1]+``;
-                gugun_val1 = gugun_val.split(",");
-                for(let val of gugun_val1) {
-                    let option = document.createElement('option');
-                    let txt = document.createTextNode(val);
-                    option.appendChild(txt);
-                    gugun.appendChild(option);
-                }
+                gugun_val = split(sido.selectedIndex-1,gugun_data);
+                addcontents(gugun,gugun_val,sido.selectedIndex);
                 break;
             case 5:
-                gugun_val = gugun_data[sido.selectedIndex-1]+``;
-                gugun_val1 = gugun_val.split(",");
-                for(let val of gugun_val1) {
-                    let option = document.createElement('option');
-                    let txt = document.createTextNode(val);
-                    option.appendChild(txt);
-                    gugun.appendChild(option);
-                }
+                gugun_val = split(sido.selectedIndex-1,gugun_data);
+                addcontents(gugun,gugun_val,sido.selectedIndex);
                 break;
         }
     }
     let getDong = () =>{
-
+        clear(dong);
+        switch (gugun.selectedIndex){
+            case 1:
+                dong_val1 = divide(sido.selectedIndex - 1, dong_data);
+                dong_val2 = split(gugun.selectedIndex - 1, dong_val1);
+                addcontents(dong, dong_val2, gugun.selectedIndex);
+                break;
+            case 2:
+                dong_val1 = divide(sido.selectedIndex - 1, dong_data);
+                dong_val2 = split(gugun.selectedIndex - 1, dong_val1);
+                addcontents(dong, dong_val2, gugun.selectedIndex);
+                break;
+            case 3:
+                dong_val1 = divide(sido.selectedIndex - 1, dong_data);
+                dong_val2 = split(gugun.selectedIndex - 1, dong_val1);
+                addcontents(dong, dong_val2, gugun.selectedIndex);
+                break;
+            case 4:
+                dong_val1 = divide(sido.selectedIndex - 1, dong_data);
+                dong_val2 = split(gugun.selectedIndex - 1, dong_val1);
+                addcontents(dong, dong_val2, gugun.selectedIndex);
+                break;
+            case 5: break;
+        }
     }
-    let getAddr = () =>{}
-
+    let getAddr = () =>{
+        if(dong.selectedIndex>0) {
+            let result = `<p>선택한 주소 : ${sido.value} ${gugun.value} ${dong.value}</p>`
+            let myaddr = document.querySelector(`#myaddr`);
+            myaddr.innerHTML = result;
+        }
+    }
     getSido();
+</script>
+<h2>요소 내용 바꾸기</h2>
+<p>innerHTML : html 요소내에 마크업을 포함한
+    무언가를 삽입/수정/제거할때 사용</p>
+<p>textContent : 요소의 텍스트 컨텐츠를
+    가져오거나 변경할때 사용</p>
+<div>
+    <span id="msg1">1</span>
+    <span id="msg2">2</span>
+    <p>게임목록</p>
+    <ul id="games"></ul>
+</div>
+<script>
+    let msg1 = document.querySelector("#msg1")
+    let msg2 = document.querySelector("#msg2")
+    let games = document.querySelector("#games")
+
+    msg1.innerHTML = `<p>Hello, World!!</p>`;
+    /*msg2.innerText = `<p>Hello, World!!</p>`;*/
+    msg2.textContent = `<p>Hello, World!!</p>`;
+
+    games.innerHTML = `<li>디아블로</li>`;
+    games.textContent = `<li>디아블로</li>`;
 </script>
 </body>
 </html>
