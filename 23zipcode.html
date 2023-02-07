@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>자바스크립트 Ajax - zipcode</title>
+</head>
+<body>
+<h1>자바스크립트 Ajax - zipcode</h1>
+<p>
+    1. tomcat.apache.org에서 tomcat 서버를 다운로드하고
+    적당한 곳에서 압축해제해 둠<br>
+
+    2. webapps/ROOT에 sido.jsp, gugun.jsp, dong.jsp에
+    복사해 둠 (23zipcode.html도 마찬가지!)<br>
+
+    3. bin/startup.bat로 서버 시작해 둠<br>
+
+    4. http://127.0.0.1:8080/sido.jsp로 실행 확인<br>
+
+    5. 실습확인은 http://127.0.0.1:8080/23zipcode.html을 이용함<br>
+
+    6. 선택한 시도에 대한 구군 조회는 'gugun.jsp?sido=시/도이름' 로 함<br>
+
+    7. 선택한 시도와 구군에 대한 동 조회는
+    'dong.jsp?sido=시/도이름&gugun=구/군이름' 으로 함
+</p>
+<div>
+    <select id="sido"></select>
+    <select id="gugun"></select>
+    <select id="dong"></select>
+    <div id="myaddr"></div>
+</div>
+<script>
+    let url1=`http://127.0.0.1:8080/server/sido.jsp`;
+    let url2=`http://127.0.0.1:8080/server/gugun.jsp`;
+    let url3=`http://127.0.0.1:8080/server/dong.jsp`;
+
+    let sido = document.querySelector("#sido");
+    let gugun = document.querySelector("#gugun");
+    let dong = document.querySelector("#dong");
+
+    let makeopt = (elm, text) => {
+        let opt = document.createElement('option');
+        let txt = document.createTextNode(text);
+        opt.appendChild(txt);
+        elm.appendChild(opt);
+    }
+
+
+    let setSido = (sidos) => {
+        //응답 데이터를 ,로 구분해서 배열에 저장
+        let cols = sidos.split(',');
+
+        makeopt(sido,'- 광역시 -');
+        makeopt(gugun,'- 시/군/구 -');
+        makeopt(dong,'- 읍/면/동 -');
+
+
+        for(let col of cols) {
+            if(col==='')continue;
+            makeopt(sido,col);
+        }
+    };   //setSido
+
+    let setGugun = (guguns) => {
+        while(gugun.lastChild){
+            gugun.removeChild(gugun.lastChild)
+        }
+        makeopt(gugun,'- 시/군/구 -');
+
+        let cols = guguns.split(',');
+
+        for(let col of cols) {
+            if(col==='')continue;
+            makeopt(gugun,col);
+        }
+
+        sido.addEventListener('change',()=> {
+            while (gugun.lastChild) {
+                gugun.removeChild(gugun.lastChild);
+            }
+            makeopt(gugun,'- 시/군/구 -');
+        });
+    };  //setGugun
+
+    let setDong = (dongs) => {
+        while(dong.lastChild){
+            dong.removeChild(dong.lastChild);
+        }
+        makeopt(dong,'- 읍/면/동 -');
+
+        let cols = dongs.split(',');
+
+        for(let col of cols) {
+            if(col==='')continue;
+            makeopt(dong,col);
+        }
+        sido.addEventListener('change',()=> {
+            while (dong.lastChild) {
+                dong.removeChild(dong.lastChild);
+            }
+            makeopt(dong, '- 읍/면/동 -');
+        });
+    };  //setDong
+
+    //1. 시/도 출력
+    let getSido = () =>{
+        let req = new XMLHttpRequest();
+        req.onreadystatechange = ()=>{
+            if(req.readyState===4 && req.status ===200){
+                    setSido(req.responseText);
+            }
+        };
+        req.open('get',url1);
+        req.send();
+    };
+
+    //2. 구/군 출력
+
+    //시/도를 선택했을 때 처리
+    sido.addEventListener('change',()=>{
+        let qry = '?sido='+sido.value;
+        if(sido.selectedIndex===0)return;
+        let req = new XMLHttpRequest();
+        req.onreadystatechange = ()=>{
+            if(req.readyState===4 && req.status ===200){
+                setGugun(req.responseText);
+            }
+        };
+        req.open('get',url2+qry);
+        req.send();
+    });
+
+    //3. 동 출력
+
+    //구/군을 선택했을 때 처리
+    gugun.addEventListener('change',()=>{
+        let qry = `?sido=${sido.value}&gugun=${gugun.value}`;
+        if(gugun.selectedIndex===0)return;
+        let req = new XMLHttpRequest();
+        req.onreadystatechange = ()=>{
+            if(req.readyState===4 && req.status ===200){
+                setDong(req.responseText);
+            }
+        };
+        req.open('get',url3+qry);
+        req.send();
+    });
+
+
+    dong.addEventListener('change', () => {
+        if(dong.value!=='- 읍/면/동 -') {
+            let result = `<p>선택한 주소 : ${sido.value} ${gugun.value} ${dong.value}</p>`
+            let myaddr = document.querySelector(`#myaddr`);
+            myaddr.innerHTML = result;
+        }
+    });
+
+    //코드 실행 - 실행 진입점(entry point), 시작점
+    getSido();
+</script>
+</body>
+</html>
