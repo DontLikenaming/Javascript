@@ -49,7 +49,7 @@
 
     let setSido = (sidos) => {
         //응답 데이터를 ,로 구분해서 배열에 저장
-        let cols = sidos.split(',');
+        let cols = sidos.trim().split(',');
 
         makeopt(sido,'- 광역시 -');
         makeopt(gugun,'- 시/군/구 -');
@@ -69,9 +69,9 @@
         }
         makeopt(gugun,'- 시/군/구 -');
 
-        let cols = guguns.split(',');
+        let cols = guguns.trim().split(',');
         for(let col of cols) {
-            if(col===''||col.trim()==='null')continue;
+            if(col===''||col==='null')continue;
             makeopt(gugun,col);
         }
 
@@ -90,10 +90,10 @@
         }
         makeopt(dong,'- 읍/면/동 -');
 
-        let cols = dongs.split(',');
+        let cols = dongs.trim().split(',');
 
         for(let col of cols) {
-            if(col===''||col.trim()==='null')continue;
+            if(col===''||col==='null')continue;
             makeopt(dong,col);
         }
         sido.addEventListener('change',()=> {
