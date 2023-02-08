@@ -185,18 +185,16 @@
 
 
   (() => {
-    const check = document.querySelectorAll(`.needs-validation`);
+    const check = document.querySelector(`.needs-validation`);
 
-    Array.from(check).forEach(form => {
-      form.addEventListener('submit', event => {
-        if (!form.checkValidity()) {
+    check.addEventListener('submit', event => {
+        if (!check.checkValidity()) {
           event.preventDefault()
           event.stopPropagation()
         }
 
-        form.classList.add('was-validated')
-      }, false) //addEventListener
-    })  //forEach
+      check.classList.add('was-validated')
+      }, false)
   })();
 </script>
 </body>
